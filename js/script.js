@@ -1,140 +1,282 @@
+// =========================
+// BURGER MENU
+// =========================
+
 const burger = document.getElementById("burger");
 const mobileNav = document.getElementById("mobileNav");
 
-burger.addEventListener("click", () => {
-mobileNav.classList.toggle("active");
+burger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mobileNav.classList.toggle("active");
 });
 
-document.querySelectorAll(".mobile-nav a").forEach(link=>{
-link.addEventListener("click",()=>{
-mobileNav.classList.remove("active");
+document.querySelectorAll(".mobile-nav a").forEach(link => {
+    link.addEventListener("click", () => {
+        mobileNav.classList.remove("active");
+    });
 });
+
+document.addEventListener("click", (e) => {
+
+    if (
+        mobileNav.classList.contains("active") &&
+        !mobileNav.contains(e.target) &&
+        !burger.contains(e.target)
+    ) {
+        mobileNav.classList.remove("active");
+    }
+
 });
+
+// =========================
+// LIGHTBOX
+// =========================
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 
-document.querySelectorAll(".art").forEach(img=>{
+document.querySelectorAll(".art").forEach(img => {
 
-img.addEventListener("click",()=>{
+    img.addEventListener("click", () => {
 
-lightbox.style.display="flex";
-lightboxImg.src=img.src;
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+
+        document.body.style.overflow = "hidden";
+    });
 
 });
 
+lightbox.addEventListener("click", () => {
+
+    lightbox.style.display = "none";
+
+    document.body.style.overflow = "";
+
 });
 
-lightbox.addEventListener("click",()=>{
-lightbox.style.display="none";
+// ESC CLOSE
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.key === "Escape") {
+
+        lightbox.style.display = "none";
+
+        document.body.style.overflow = "";
+
+    }
+
 });
 
-for(let i=0;i<100;i++){
+// =========================
+// COMIC PARTICLES
+// =========================
 
-const dot=document.createElement("div");
+const particles = document.getElementById("particles");
 
-dot.classList.add("dot");
+for (let i = 0; i < 100; i++) {
 
-const size=Math.random()*8+2;
+    const dot = document.createElement("div");
 
-dot.style.width=size+"px";
-dot.style.height=size+"px";
+    dot.classList.add("dot");
 
-dot.style.left=Math.random()*100+"%";
+    const size = Math.random() * 8 + 2;
 
-dot.style.animationDuration=
-(Math.random()*20+10)+"s";
+    dot.style.width = size + "px";
+    dot.style.height = size + "px";
 
-dot.style.opacity=Math.random();
+    dot.style.left = Math.random() * 100 + "%";
 
-document.getElementById("particles").appendChild(dot);
+    dot.style.animationDuration =
+        (Math.random() * 20 + 10) + "s";
+
+    dot.style.opacity = Math.random();
+
+    particles.appendChild(dot);
 
 }
+
+// =========================
+// TRANSLATIONS
+// =========================
 
 const translations = {
 
-en:{
-about:"About",
-prices:"Prices",
-gallery:"Gallery",
-contacts:"Contacts",
-hero:"Cute Art • Commissions • Character Design",
-aboutText:"Welcome to my portfolio! I create cute illustrations, original characters and commission artwork.",
-head:"Head",
-half:"Half Body",
-full:"Full Body"
-},
+    en: {
+        about: "About",
+        prices: "Prices",
+        gallery: "Gallery",
+        contacts: "Contacts",
 
-ru:{
-about:"Обо мне",
-prices:"Прайс",
-gallery:"Галерея",
-contacts:"Контакты",
-hero:"Милые рисунки • Заказы • Дизайн персонажей",
-aboutText:"Добро пожаловать в моё портфолио! Я создаю милые иллюстрации, оригинальных персонажей и арты на заказ.",
-head:"Голова",
-half:"Половина тела",
-full:"Полное тело"
-},
+        hero: "Cute Art • Commissions • Character Design",
 
-fr:{
-about:"À propos",
-prices:"Tarifs",
-gallery:"Galerie",
-contacts:"Contacts",
-hero:"Art mignon • Commandes • Design de personnages",
-aboutText:"Bienvenue dans mon portfolio ! Je crée des illustrations adorables, des personnages originaux et des commandes personnalisées.",
-head:"Tête",
-half:"Mi-corps",
-full:"Corps complet"
-},
+        aboutText:
+            "Welcome to my portfolio! I create cute illustrations, original characters and commission artwork.",
 
-de:{
-about:"Über mich",
-prices:"Preise",
-gallery:"Galerie",
-contacts:"Kontakt",
-hero:"Niedliche Kunst • Aufträge • Charakterdesign",
-aboutText:"Willkommen in meinem Portfolio! Ich erstelle niedliche Illustrationen, originale Charaktere und Auftragsarbeiten.",
-head:"Kopf",
-half:"Halber Körper",
-full:"Ganzer Körper"
-}
+        head: "Head",
+        half: "Half Body",
+        full: "Full Body"
+    },
+
+    ru: {
+        about: "Обо мне",
+        prices: "Прайс",
+        gallery: "Галерея",
+        contacts: "Контакты",
+
+        hero: "Милые рисунки • Заказы • Дизайн персонажей",
+
+        aboutText:
+            "Добро пожаловать в моё портфолио! Я создаю милые иллюстрации, оригинальных персонажей и арты на заказ.",
+
+        head: "Голова",
+        half: "Половина тела",
+        full: "Полное тело"
+    },
+
+    fr: {
+        about: "À propos",
+        prices: "Tarifs",
+        gallery: "Galerie",
+        contacts: "Contacts",
+
+        hero: "Art mignon • Commandes • Design de personnages",
+
+        aboutText:
+            "Bienvenue dans mon portfolio ! Je crée des illustrations adorables, des personnages originaux et des commandes personnalisées.",
+
+        head: "Tête",
+        half: "Mi-corps",
+        full: "Corps complet"
+    },
+
+    de: {
+        about: "Über mich",
+        prices: "Preise",
+        gallery: "Galerie",
+        contacts: "Kontakt",
+
+        hero: "Niedliche Kunst • Aufträge • Charakterdesign",
+
+        aboutText:
+            "Willkommen in meinem Portfolio! Ich erstelle niedliche Illustrationen, originale Charaktere und Auftragsarbeiten.",
+
+        head: "Kopf",
+        half: "Halber Körper",
+        full: "Ganzer Körper"
+    }
 
 };
 
-function setLanguage(lang){
+// =========================
+// LANGUAGE SWITCH
+// =========================
 
-document.querySelectorAll("[data-lang]").forEach(el=>{
-const key=el.dataset.lang;
-el.textContent=translations[lang][key];
-});
+function setLanguage(lang) {
 
-document.getElementById("heroText").textContent=
-translations[lang].hero;
+    document.querySelectorAll("[data-lang]").forEach(el => {
 
-document.getElementById("aboutText").textContent=
-translations[lang].aboutText;
+        const key = el.dataset.lang;
 
-document.getElementById("headTitle").textContent=
-translations[lang].head;
+        if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
 
-document.getElementById("halfTitle").textContent=
-translations[lang].half;
+    });
 
-document.getElementById("fullTitle").textContent=
-translations[lang].full;
+    document.getElementById("heroText").textContent =
+        translations[lang].hero;
+
+    document.getElementById("aboutText").textContent =
+        translations[lang].aboutText;
+
+    document.getElementById("headTitle").textContent =
+        translations[lang].head;
+
+    document.getElementById("halfTitle").textContent =
+        translations[lang].half;
+
+    document.getElementById("fullTitle").textContent =
+        translations[lang].full;
+
+    localStorage.setItem("language", lang);
 
 }
 
-document.getElementById("langDesktop")
-.addEventListener("change",e=>{
-setLanguage(e.target.value);
-});
+// =========================
+// LANGUAGE SELECTORS
+// =========================
 
-document.getElementById("langMobile")
-.addEventListener("change",e=>{
-setLanguage(e.target.value);
-});
+const langDesktop =
+    document.getElementById("langDesktop");
 
-setLanguage("en");
+const langMobile =
+    document.getElementById("langMobile");
+
+if (langDesktop) {
+
+    langDesktop.addEventListener("change", (e) => {
+
+        const lang = e.target.value;
+
+        setLanguage(lang);
+
+        if (langMobile)
+            langMobile.value = lang;
+
+    });
+
+}
+
+if (langMobile) {
+
+    langMobile.addEventListener("change", (e) => {
+
+        const lang = e.target.value;
+
+        setLanguage(lang);
+
+        if (langDesktop)
+            langDesktop.value = lang;
+
+    });
+
+}
+
+// =========================
+// LOAD SAVED LANGUAGE
+// =========================
+
+const savedLanguage =
+    localStorage.getItem("language") || "en";
+
+setLanguage(savedLanguage);
+
+if (langDesktop)
+    langDesktop.value = savedLanguage;
+
+if (langMobile)
+    langMobile.value = savedLanguage;
+
+// =========================
+// PREVENT DOUBLE TAP ZOOM
+// =========================
+
+let lastTouchEnd = 0;
+
+document.addEventListener(
+    "touchend",
+    function (event) {
+
+        const now = Date.now();
+
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+
+        lastTouchEnd = now;
+
+    },
+    false
+);
