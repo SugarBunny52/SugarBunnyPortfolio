@@ -1,36 +1,40 @@
-// =========================
+// ======================
 // BURGER MENU
-// =========================
+// ======================
 
 const burger = document.getElementById("burger");
 const mobileNav = document.getElementById("mobileNav");
 
-burger.addEventListener("click", (e) => {
-    e.stopPropagation();
-    mobileNav.classList.toggle("active");
-});
+if (burger && mobileNav) {
 
-document.querySelectorAll(".mobile-nav a").forEach(link => {
-    link.addEventListener("click", () => {
-        mobileNav.classList.remove("active");
+    burger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        mobileNav.classList.toggle("active");
     });
-});
 
-document.addEventListener("click", (e) => {
+    document.querySelectorAll(".mobile-nav a").forEach(link => {
+        link.addEventListener("click", () => {
+            mobileNav.classList.remove("active");
+        });
+    });
 
-    if (
-        mobileNav.classList.contains("active") &&
-        !mobileNav.contains(e.target) &&
-        !burger.contains(e.target)
-    ) {
-        mobileNav.classList.remove("active");
-    }
+    document.addEventListener("click", (e) => {
 
-});
+        if (
+            mobileNav.classList.contains("active") &&
+            !mobileNav.contains(e.target) &&
+            !burger.contains(e.target)
+        ) {
+            mobileNav.classList.remove("active");
+        }
 
-// =========================
+    });
+
+}
+
+// ======================
 // LIGHTBOX
-// =========================
+// ======================
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
@@ -42,64 +46,75 @@ document.querySelectorAll(".art").forEach(img => {
         lightbox.style.display = "flex";
         lightboxImg.src = img.src;
 
-        document.body.style.overflow = "hidden";
+        document.body.classList.add("modal-open");
+
     });
 
 });
 
-lightbox.addEventListener("click", () => {
+if (lightbox) {
 
-    lightbox.style.display = "none";
+    lightbox.addEventListener("click", () => {
 
-    document.body.style.overflow = "";
+        lightbox.style.display = "none";
 
-});
+        document.body.classList.remove("modal-open");
 
-// ESC CLOSE
+    });
+
+}
 
 document.addEventListener("keydown", (e) => {
 
     if (e.key === "Escape") {
 
-        lightbox.style.display = "none";
+        if (lightbox) {
 
-        document.body.style.overflow = "";
+            lightbox.style.display = "none";
+
+            document.body.classList.remove("modal-open");
+
+        }
 
     }
 
 });
 
-// =========================
-// COMIC PARTICLES
-// =========================
+// ======================
+// PARTICLES
+// ======================
 
 const particles = document.getElementById("particles");
 
-for (let i = 0; i < 100; i++) {
+if (particles) {
 
-    const dot = document.createElement("div");
+    for (let i = 0; i < 100; i++) {
 
-    dot.classList.add("dot");
+        const dot = document.createElement("div");
 
-    const size = Math.random() * 8 + 2;
+        dot.classList.add("dot");
 
-    dot.style.width = size + "px";
-    dot.style.height = size + "px";
+        const size = Math.random() * 8 + 2;
 
-    dot.style.left = Math.random() * 100 + "%";
+        dot.style.width = size + "px";
+        dot.style.height = size + "px";
 
-    dot.style.animationDuration =
-        (Math.random() * 20 + 10) + "s";
+        dot.style.left = Math.random() * 100 + "%";
 
-    dot.style.opacity = Math.random();
+        dot.style.animationDuration =
+            (Math.random() * 20 + 10) + "s";
 
-    particles.appendChild(dot);
+        dot.style.opacity = Math.random();
+
+        particles.appendChild(dot);
+
+    }
 
 }
 
-// =========================
+// ======================
 // TRANSLATIONS
-// =========================
+// ======================
 
 const translations = {
 
@@ -169,9 +184,9 @@ const translations = {
 
 };
 
-// =========================
-// LANGUAGE SWITCH
-// =========================
+// ======================
+// LANGUAGE
+// ======================
 
 function setLanguage(lang) {
 
@@ -185,28 +200,31 @@ function setLanguage(lang) {
 
     });
 
-    document.getElementById("heroText").textContent =
-        translations[lang].hero;
+    const heroText = document.getElementById("heroText");
+    const aboutText = document.getElementById("aboutText");
 
-    document.getElementById("aboutText").textContent =
-        translations[lang].aboutText;
+    const headTitle = document.getElementById("headTitle");
+    const halfTitle = document.getElementById("halfTitle");
+    const fullTitle = document.getElementById("fullTitle");
 
-    document.getElementById("headTitle").textContent =
-        translations[lang].head;
+    if (heroText)
+        heroText.textContent = translations[lang].hero;
 
-    document.getElementById("halfTitle").textContent =
-        translations[lang].half;
+    if (aboutText)
+        aboutText.textContent = translations[lang].aboutText;
 
-    document.getElementById("fullTitle").textContent =
-        translations[lang].full;
+    if (headTitle)
+        headTitle.textContent = translations[lang].head;
+
+    if (halfTitle)
+        halfTitle.textContent = translations[lang].half;
+
+    if (fullTitle)
+        fullTitle.textContent = translations[lang].full;
 
     localStorage.setItem("language", lang);
 
 }
-
-// =========================
-// LANGUAGE SELECTORS
-// =========================
 
 const langDesktop =
     document.getElementById("langDesktop");
@@ -244,10 +262,6 @@ if (langMobile) {
 
 }
 
-// =========================
-// LOAD SAVED LANGUAGE
-// =========================
-
 const savedLanguage =
     localStorage.getItem("language") || "en";
 
@@ -258,25 +272,3 @@ if (langDesktop)
 
 if (langMobile)
     langMobile.value = savedLanguage;
-
-// =========================
-// PREVENT DOUBLE TAP ZOOM
-// =========================
-
-let lastTouchEnd = 0;
-
-document.addEventListener(
-    "touchend",
-    function (event) {
-
-        const now = Date.now();
-
-        if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-        }
-
-        lastTouchEnd = now;
-
-    },
-    false
-);
