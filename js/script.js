@@ -32,6 +32,7 @@ if (burger && mobileNav) {
 
 }
 
+
 // ======================
 // LIGHTBOX
 // ======================
@@ -80,6 +81,7 @@ document.addEventListener("keydown", (e) => {
 
 });
 
+
 // ======================
 // PARTICLES
 // ======================
@@ -111,6 +113,7 @@ if (particles) {
     }
 
 }
+
 
 // ======================
 // TRANSLATIONS
@@ -184,9 +187,12 @@ const translations = {
 
 };
 
+
 // ======================
-// LANGUAGE
+// LANGUAGE DROPDOWN (NEW)
 // ======================
+
+const langSwitches = document.querySelectorAll(".lang-switch");
 
 function setLanguage(lang) {
 
@@ -226,49 +232,99 @@ function setLanguage(lang) {
 
 }
 
-const langDesktop =
-    document.getElementById("langDesktop");
 
-const langMobile =
-    document.getElementById("langMobile");
+// dropdown logic
+langSwitches.forEach(langSwitch => {
 
-if (langDesktop) {
+    const btn = langSwitch.querySelector(".lang-current");
+    const items = langSwitch.querySelectorAll(".lang-item");
 
-    langDesktop.addEventListener("change", (e) => {
+    items.forEach(item => {
 
-        const lang = e.target.value;
+        item.addEventListener("click", () => {
 
-        setLanguage(lang);
+            const lang = item.dataset.lang;
 
-        if (langMobile)
-            langMobile.value = lang;
+            // UI active state
+            langSwitch.querySelectorAll(".lang-item")
+                .forEach(i => i.classList.remove("active"));
+
+            item.classList.add("active");
+
+            btn.textContent = item.textContent + " ▾";
+
+            langSwitch.classList.remove("active");
+
+            // apply language
+            setLanguage(lang);
+
+            // sync all dropdowns
+            langSwitches.forEach(other => {
+                const otherBtn = other.querySelector(".lang-current");
+                const otherItems = other.querySelectorAll(".lang-item");
+
+                otherItems.forEach(i => {
+                    i.classList.toggle(
+                        "active",
+                        i.dataset.lang === lang
+                    );
+                });
+
+                const activeItem = other.querySelector(".lang-item.active");
+                if (activeItem) {
+                    otherBtn.textContent = activeItem.textContent + " ▾";
+                }
+            });
+
+        });
 
     });
 
-}
-
-if (langMobile) {
-
-    langMobile.addEventListener("change", (e) => {
-
-        const lang = e.target.value;
-
-        setLanguage(lang);
-
-        if (langDesktop)
-            langDesktop.value = lang;
-
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        langSwitch.classList.toggle("active");
     });
 
-}
+});
+
+
+// close on outside click
+document.addEventListener("click", (e) => {
+
+    langSwitches.forEach(langSwitch => {
+        if (!langSwitch.contains(e.target)) {
+            langSwitch.classList.remove("active");
+        }
+    });
+
+});
+
+
+// ======================
+// INIT LANGUAGE
+// ======================
 
 const savedLanguage =
     localStorage.getItem("language") || "en";
 
 setLanguage(savedLanguage);
 
-if (langDesktop)
-    langDesktop.value = savedLanguage;
+// set UI state
+langSwitches.forEach(langSwitch => {
 
-if (langMobile)
-    langMobile.value = savedLanguage;
+    const btn = langSwitch.querySelector(".lang-current");
+    const items = langSwitch.querySelectorAll(".lang-item");
+
+    items.forEach(i => {
+        i.classList.toggle(
+            "active",
+            i.dataset.lang === savedLanguage
+        );
+    });
+
+    const activeItem = langSwitch.querySelector(".lang-item.active");
+    if (activeItem) {
+        btn.textContent = activeItem.textContent + " ▾";
+    }
+
+});
