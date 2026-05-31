@@ -1,53 +1,106 @@
+сигаретка♡
+motherofbun
+•
+HERE'S COMES TO THE BIG BOOM
+Это начало канала Srating (ROR 2). 
+VoiceMaster
+БОТ
+ — Вчера, в 22:00
+:VMCog:  Добро пожаловать в ваш временный голосовой канал
+Управляйте каналом через меню ниже
+• Списки для настроек и прав
+• Или команды /voice
+• /toggle set чтобы отключить этот интерфейс
+
+Создайте профиль пользователя в панели, затем нажмите Загрузить настройки ниже, чтобы применить сохранённые настройки к этому каналу. Руководство по профилям.
+Золотые опции требуют VoiceMaster+ или голоса
+
+Настройки канала
+Изменить настройки канала
+Права канала
+Изменить права канала
+alex event — 0:39
+
+Изображение
+alex event — 1:57
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,
-body{
-    width:100%;
-    max-width:100%;
-    overflow-x:hidden;
-    position:relative;
+Новый текстовый документ (2).txt
+7 кб
+// =========================
+// BURGER MENU
+// =========================
+
+const burger = document.getElementById("burger");
+const mobileNav = document.getElementById("mobileNav");
+
+оы.txt
+7 кб
+alex event — 2:06
+// ======================
+// BURGER MENU
+// ======================
+
+const burger = document.getElementById("burger");
+const mobileNav = document.getElementById("mobileNav");
+
+оы.txt
+7 кб
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+css.txt
+5 кб
+alex event — 2:26
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+style.css
+6 кб
+ 
+// ======================
+// BURGER MENU
+// ======================
+
+const burger = document.getElementById("burger");
+
+script.js
+9 кб
+﻿
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
     scroll-behavior:smooth;
-    overscroll-behavior:none;
-    touch-action:pan-y;
+    overflow-x:hidden;
 }
 
 body{
     font-family:'Fredoka',sans-serif;
     background:#ffe6f2;
     color:#5c2140;
+    overflow-x:hidden;
+    min-height:100vh;
 }
 
-/* =========================
-   CURSOR
-========================= */
-
-html,
-body,
-a,
-button,
-select,
-input,
-textarea,
-.art,
-.burger,
-.social{
-    cursor:url("../kursor.cur"), auto;
-}
-
-/* =========================
-   COMIC PARTICLES
-========================= */
+/* Фон */
 
 #particles{
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    inset:0;
     z-index:-1;
     overflow:hidden;
     pointer-events:none;
@@ -55,9 +108,8 @@ textarea,
 
 .dot{
     position:absolute;
-    background:white;
+    background:#fff;
     border-radius:50%;
-    opacity:.6;
     animation:float linear infinite;
 }
 
@@ -70,9 +122,7 @@ textarea,
     }
 }
 
-/* =========================
-   HEADER
-========================= */
+/* Header */
 
 header{
     position:sticky;
@@ -83,10 +133,10 @@ header{
     justify-content:space-between;
     align-items:center;
 
-    padding:20px 50px;
+    padding:20px;
 
-    background:rgba(255,255,255,.75);
-    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(10px);
 }
 
 .logo{
@@ -96,50 +146,56 @@ header{
 
 .desktop-nav{
     display:flex;
-    align-items:center;
     gap:20px;
+    align-items:center;
 }
 
 .desktop-nav a,
 .mobile-nav a{
     text-decoration:none;
     color:#5c2140;
-    font-weight:500;
-    transition:.3s;
+    position:relative;
+    transition:color .25s ease;
 }
 
+/* hover эффект навигации */
 .desktop-nav a:hover,
 .mobile-nav a:hover{
     color:#ff4fa3;
 }
 
-select{
-    border:none;
-    border-radius:12px;
-    padding:8px 12px;
-    background:white;
+.desktop-nav a::after,
+.mobile-nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0%;
+    height:2px;
+    background:#ff4fa3;
+    transition:width .3s ease;
 }
 
-/* =========================
-   BURGER
-========================= */
+.desktop-nav a:hover::after,
+.mobile-nav a:hover::after{
+    width:100%;
+}
+
+/* Burger */
 
 .burger{
     display:none;
     flex-direction:column;
-    gap:6px;
+    gap:5px;
 }
 
 .burger span{
     width:30px;
     height:3px;
     background:#5c2140;
-    border-radius:10px;
 }
 
-/* =========================
-   MOBILE NAV
-========================= */
+/* Mobile menu */
 
 .mobile-nav{
     position:fixed;
@@ -147,31 +203,27 @@ select{
     right:0;
 
     width:280px;
-    height:100dvh;
+    height:100vh;
 
     background:white;
 
     display:flex;
     flex-direction:column;
-    gap:25px;
+    gap:20px;
 
-    padding:100px 30px;
+    padding:100px 25px;
 
     transform:translateX(100%);
-    transition:transform .35s ease;
+    transition:transform .3s ease;
 
     z-index:9999;
-
-    box-shadow:-10px 0 25px rgba(0,0,0,.1);
 }
 
 .mobile-nav.active{
     transform:translateX(0);
 }
 
-/* =========================
-   HERO
-========================= */
+/* Hero */
 
 .hero{
     text-align:center;
@@ -181,12 +233,11 @@ select{
 .avatar{
     width:220px;
     height:220px;
+    border-radius:50%;
     object-fit:cover;
 
-    border-radius:50%;
     border:8px solid white;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
 .hero h1{
@@ -196,50 +247,39 @@ select{
 
 .hero p{
     margin-top:10px;
-    font-size:1.2rem;
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* Sections */
 
 section{
+    padding:80px 20px;
     width:100%;
-    overflow:hidden;
-    padding:80px 10%;
 }
 
 h2{
     text-align:center;
-    font-size:2.5rem;
     margin-bottom:40px;
 }
 
-/* =========================
-   PRICE
-========================= */
+/* Price */
 
 .price-card{
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
-    align-items:center;
     gap:40px;
 }
 
 .price-card img{
-    width:450px;
     max-width:100%;
-
+    width:450px;
     border-radius:20px;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
 .price-info{
     display:flex;
     flex-direction:column;
-    gap:25px;
+    gap:20px;
 }
 
 .price-info div{
@@ -248,127 +288,79 @@ h2{
     gap:50px;
 
     background:white;
-
     padding:20px;
     border-radius:16px;
-
-    font-size:1.2rem;
 }
 
-/* =========================
-   ABOUT
-========================= */
+/* About */
 
 #about p{
     max-width:900px;
     margin:auto;
-
     text-align:center;
     line-height:1.8;
-
-    font-size:1.2rem;
 }
 
-/* =========================
-   GALLERY
-========================= */
+/* Gallery */
 
 .gallery{
-    width:100%;
-
     display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:20px;
-
-    overflow:hidden;
 }
 
 .gallery img{
-    display:block;
-
     width:100%;
-    height:auto;
-
+    display:block;
     border-radius:20px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.1);
-
     transition:.3s;
 }
 
 .gallery img:hover{
-    transform:translateY(-8px) scale(1.03);
+    transform:scale(1.03);
 }
 
-/* =========================
-   SOCIAL
-========================= */
+/* Social */
 
 .social{
     display:block;
-
     width:220px;
-
     margin:auto;
-
-    padding:16px;
-
     text-align:center;
-
-    text-decoration:none;
-
-    border-radius:50px;
-
-    color:white;
+    padding:15px;
+    border-radius:999px;
     background:#ff7ab8;
-
-    transition:.3s;
+    color:white;
+    text-decoration:none;
 }
 
-.social:hover{
-    transform:translateY(-4px);
-}
-
-/* =========================
-   LIGHTBOX
-========================= */
+/* Lightbox */
 
 .lightbox{
     position:fixed;
     inset:0;
-
-    background:rgba(0,0,0,.92);
-
+    background:rgba(0,0,0,.9);
     display:none;
     justify-content:center;
     align-items:center;
-
     z-index:100000;
 }
 
 .lightbox img{
     max-width:95vw;
-    max-height:95dvh;
-
+    max-height:95vh;
     object-fit:contain;
-
-    border-radius:15px;
-
-    touch-action:none;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* Блокировка прокрутки только когда открыта картинка */
+
+body.modal-open{
+    overflow:hidden;
+}
+
+/* Mobile */
 
 @media(max-width:768px){
-
-    header{
-        padding:20px;
-    }
 
     .desktop-nav{
         display:none;
@@ -378,29 +370,13 @@ h2{
         display:flex;
     }
 
-    .hero{
-        padding:60px 20px;
-    }
-
     .hero h1{
-        font-size:2.4rem;
-    }
-
-    .hero p{
-        font-size:1rem;
+        font-size:2.5rem;
     }
 
     .avatar{
         width:170px;
         height:170px;
-    }
-
-    h2{
-        font-size:2rem;
-    }
-
-    section{
-        padding:60px 20px;
     }
 
     .price-info div{
@@ -411,9 +387,93 @@ h2{
     .gallery{
         grid-template-columns:1fr;
     }
-
-    .gallery img{
-        width:100%;
-    }
-
 }
+
+.lang-switch{
+    position:relative;
+    display:inline-block;
+}
+
+.lang-switch.mobile{
+    width:100%;
+}
+
+.lang-current{
+    padding:10px 16px;
+    border-radius:999px;
+
+    border:2px solid #ff7ab8;
+    background:white;
+
+    color:#5c2140;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+}
+
+.lang-current:hover{
+    background:#ff7ab8;
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(255,122,184,.3);
+}
+
+.lang-menu{
+    position:absolute;
+    top:calc(100% + 10px);
+    right:0;
+
+    background:white;
+    border-radius:16px;
+
+    min-width:140px;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+    overflow:hidden;
+
+    opacity:0;
+    transform:translateY(-10px);
+    pointer-events:none;
+
+    transition:.25s ease;
+    z-index:9999;
+}
+
+.lang-switch.mobile .lang-menu{
+    right:auto;
+    left:0;
+    width:100%;
+}
+
+.lang-switch.active .lang-menu{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+}
+
+.lang-item{
+    padding:12px 14px;
+    cursor:pointer;
+    transition:.2s;
+    color:#5c2140;
+}
+
+.lang-item:hover{
+    background:#ffe6f2;
+    color:#ff4fa3;
+}
+
+.lang-item.active{
+    background:#ff7ab8;
+    color:white;
+}
+style.css
+6 кб
